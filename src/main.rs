@@ -1,11 +1,11 @@
 fn main() {
     println!("Welcome to open media player");
+    let file_path = "test.mp4";
+
     ffmpeg::init().unwrap();
 
-    let file_path:String = String::new();
-
     let context = ffmpeg::format::input(&file_path).unwrap();
-    let duration = context.duration();
+    let duration = context.duration() as f64 / ffmpeg::ffi::AV_TIME_BASE as f64 ;
 
     for stream in context.streams() {
         let codec_parameters = stream.parameters();
@@ -23,5 +23,6 @@ fn main() {
             _ => {}
         }
     }
-    println!("Duration of video: {}", duration);
+    println!("Duration of video: {} sec", duration.round());
+    println!("Duration of video: {} min", ((duration % 3600.0) / 60.0).round());
 }
