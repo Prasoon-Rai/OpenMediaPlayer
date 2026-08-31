@@ -4,7 +4,6 @@ pub struct VideoInfo {
     pub resolution: (u32, u32),
     pub framerate: Rational,
     pub durationSec: f32,
-    pub durationMin: f32,
 }
 
 pub fn get_info(file_path: &str) -> Option<VideoInfo> {
@@ -36,6 +35,5 @@ pub fn get_info(file_path: &str) -> Option<VideoInfo> {
         resolution: vid_resolution,
         durationSec: duration.round(),
         framerate: frame_rate,
-        durationMin: ((duration % 3600.0) / 60.0).round(),
     })
 }
