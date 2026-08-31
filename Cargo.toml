@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 ffmpeg = { package = "ffmpeg-next", version = "9.0", features = ["build"] }
+eframe = "0.36"
